@@ -1,36 +1,42 @@
-import axios from "axios";
-
+const BASE_URL = 'https://api.themoviedb.org/3';
 export const API_KEY = 'dd06e17bf41b8c1999e9b262a8aaf7ee';
 
 
+async function fetchMovies(url = '', config = {}) {
+    const response = await fetch(url, config);
+    return response.ok
+        ? await response.json()
+        : Promise.reject(new Error('Not found'));
+}
+
 // Запит на список найпопулярніших фільмів на сьогодні для створення колекції на головній сторінці.
-export async function fetchTrendingMovies(page = 1, media_type = 'movie', time_window = 'day') {
-    const { data } = await axios(`https://api.themoviedb.org/3/trending/${media_type}/${time_window}?api_key=${API_KEY}&page=${page}`);
-    return data
-};
+export function fetchTrending() {
+    return fetchMovies(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`);
+}
 
 // Запит на пошук фільму за ключовим словом на сторінці фільмів.
-export async function fetchMoviesByQuery(query, page = 1, language = 'en-US') {
-    const { data } = await axios(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=${language}&query=${query}&page=${page}`);
-    return data;
-};
+export function fetchSearchMovie(searchQuery) {
+    return fetchMovies(
+        `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${searchQuery}`
+    );
+}
 
 // Запит повної інформації про фільм для сторінки кінофільму.
-export async function fetchMovieById(movie_id, language = 'en-US') {
-    const { data } = await axios(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=${language}`);
-    return data;
-};
+export function fetchMovieDetails(movieId) {
+    return fetchMovies(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
+}
 
 // Запит інформації про акторський склад для сторінки кінофільму.
-export async function fetchCreditsByMovieId(movie_id, language = 'en-US') {
-    const { data } = await axios(`https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${API_KEY}&language=${language}`);
-    return data.cast;
-};
+export function fetchMovieCredits(movieId) {
+    return fetchMovies(
+        `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
+    );
+}
 
 // Запит оглядів для сторінки кінофільму.
-export async function fetchReviewsByMovieId(movie_id, page = 1, language = 'en-US') {
-    const { data } = await axios(`https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${API_KEY}&language=${language}&page=${page}`);
-    return data;
-};
-
+export function fetchMovieReviews(movieId) {
+    return fetchMovies(
+        `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`
+    );
+}
 

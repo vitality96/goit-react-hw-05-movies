@@ -1,0 +1,61 @@
+.button {
+    appearance: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: normal;
+    padding: 0.5rem 0.5rem;
+    text-decoration: none;
+    width: 100px;
+    cursor: pointer;
+    background-color: white;
+    color: red;
+}
+
+.container {
+    display: flex;
+}
+
+.centered {
+    margin-left: 20px;
+}
+
+.avarage {
+    font-weight: 700;
+}
+
+.overview {
+    font-weight: 700;
+}
+
+.genres {
+    font-weight: 700;
+}
+
+.list {
+    display: flex;
+    padding: 0%;
+    list-style: none;
+}
+
+.item:not(:last-child) {
+    margin-right: 10px;
+}
+
+.title {
+    margin-left: 20px;
+}
+
+.listStyle {
+    padding: 0%;
+    list-style: none;
+    margin-left: 20px;
+
+}
+
+.itemList:not(:last-child) {
+    margin-bottom: 10px;
+}

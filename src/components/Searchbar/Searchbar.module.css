@@ -1,0 +1,34 @@
+.input {
+    width: 250px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    line-height: normal;
+    padding: 0.60rem 1.25rem;
+    text-decoration: none;
+    color: red;
+}
+
+.input::placeholder {
+    color: red;
+}
+
+.button {
+    appearance: none;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: normal;
+    padding: 0.5rem 1.25rem;
+    text-decoration: none;
+    width: 100px;
+    cursor: pointer;
+    background-color: white;
+    color: red;
+}
+
+.button:hover {
+    background-color: rgb(204, 204, 204);
+}

@@ -1,0 +1,9 @@
+.title {
+    margin-left: 20px;
+}
+
+.item {
+    list-style: none;
+    margin-left: 20px;
+    font-size: 20px;
+}

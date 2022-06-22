@@ -1,8 +1,9 @@
 import Naviagtion from "components/Navigation/Navigation";
+import s from './AppBar.module.css';
 
 function AppBar() {
     return (
-        <header>
+        <header className={s.header}>
             <Naviagtion />
         </header>
     )

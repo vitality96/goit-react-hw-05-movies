@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { fetchTrendingMovies } from "service/api";
+import { fetchTrending } from "service/api";
+import s from './Home.module.css'
 
-function HomePage() {
+function Home() {
     const [movies, setMovies] = useState(null);
     const location = useLocation();
 
     useEffect(() => {
-        fetchTrendingMovies().then(data => setMovies(data.results))
+        fetchTrending().then(response => setMovies(response.results))
     }, [])
 
     return (
         <>
-            <h1>Tranding today</h1>
+            <h1 className={s.title}>Tranding today</h1>
             {movies && movies.map(movie => 
-                <li key={movie.id}>
+                <li className={s.item} key={movie.id}>
                     <Link to={`/movies/${movie.id}`} state={{ from: location }}>{movie.title}</Link>
                 </li>)}
         </>
     );
 };
 
-export default HomePage;
+export default Home;

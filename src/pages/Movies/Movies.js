@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
-import { fetchMoviesByQuery } from "service/api";
+import { fetchSearchMovie } from "service/api";
 import Searchbar from "components/Searchbar/Searchbar";
+import s from './Movies.module.css'
 
 
-function MoviesPage() {
+function Movies() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [searchQuery, setSearchQuery] = useState(searchParams.get('query') ?? '');
     const [movies, setMovies] = useState([]);
@@ -20,7 +21,7 @@ function MoviesPage() {
         if (!searchQuery) {
             return;
         }
-        fetchMoviesByQuery(searchQuery).then(data => setMovies(data.results));
+        fetchSearchMovie(searchQuery).then(response => setMovies(response.results));
     }, [searchQuery]);
 
 
@@ -28,7 +29,7 @@ function MoviesPage() {
         <>
             <Searchbar onSubmit={handleFormSubmit} />
             {movies && (
-                <ul>
+                <ul className={s.list}>
                     {movies.map(movie => (
                         <li key={movie.id}>
                             <Link to={`${movie.id}`} state={{ from: location }}>
@@ -39,7 +40,7 @@ function MoviesPage() {
                 </ul>
             )}
         </>
-    );
-};
+    )
+}
 
-export default MoviesPage;
+export default Movies;
