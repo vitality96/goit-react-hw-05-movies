@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import s from './Searchbar.module.css';
 
 function Searchbar({ onSubmit }) {
-    const [filmRequest, setFilmRequest] = useState('');
+    const [searchParams] = useSearchParams();
+    const [filmRequest, setFilmRequest] = useState(() => (
+        searchParams.get('query') ? searchParams.get('query') : ''
+    ));
 
     const handleInputChange = event => {
         setFilmRequest(event.target.value.toLowerCase())
