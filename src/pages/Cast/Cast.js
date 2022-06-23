@@ -6,12 +6,12 @@ import s from './Cast.module.css'
 export default function Cast() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState([]);
-    
+
     useEffect(() => {
-    fetchMovieCredits(movieId).then(response => setMovie(response.cast));
+        fetchMovieCredits(movieId).then(response => setMovie(response.cast));
     }, [movieId]);
 
-        
+
     return (
         <div className={s.container}>
             {movie && (
@@ -32,6 +32,3 @@ export default function Cast() {
         </div>
     );
 };
-
-
-// https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png

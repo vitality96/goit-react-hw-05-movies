@@ -1,21 +1,22 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import s from './Searchbar.module.css';
 
 function Searchbar({ onSubmit }) {
     const [filmRequest, setFilmRequest] = useState('');
 
     const handleInputChange = event => {
-        setFilmRequest(event.currentTarget.value.toLowerCase())
+        setFilmRequest(event.target.value.toLowerCase())
     };
-
+    
     const handleSubmit = event => {
         event.preventDefault();
         if (filmRequest.trim() === '') {
             return alert('Search field is empty!');
         }
         onSubmit(filmRequest);
-        setFilmRequest('');
     };
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -35,3 +36,8 @@ function Searchbar({ onSubmit }) {
 
 
 export default Searchbar;
+
+
+Searchbar.protoType = {
+    onSubmit: PropTypes.func.isRequired,
+}
